@@ -3,16 +3,22 @@
     <div class="card-carousel-wrapper">
         <div class="card-carousel">
             <div class="card-carousel--overflow-container">
+
                 <div class="card-carousel-cards" :style="{
               transform: 'translateX' + '(' + currentOffset + 'px' + ')',
             }">
+              
                     <div class="card-carousel--card">
-                        <img id="brand" src="../assets/back.png" title="Back" @click="goBack"/>
+                        <img id="brand" src="../assets/back.png" title="Back" @click="goBack" />
                     </div>
                     <div class="card-carousel--card" v-for="boards in boards" :key="boards.id">
+                    <router-link :to="{name: 'BoardBrand' , params : {id : boards.ID}}">
                         <img id="brand" :src="boards.Image" :title="boards.Name" />
+                        </router-link>
                     </div>
+                    
                 </div>
+
             </div>
         </div>
     </div>
@@ -43,15 +49,19 @@ export default {
                     key: doc.id,
                     Image: doc.data().image,
                     Name: doc.data().name,
+                    ID: doc.data().ID,
                 });
             });
         });
+
+        
+
     },
 
     methods: {
-      goBack(){
-        return this.$router.go(-1)
-      }
+        goBack() {
+            return this.$router.go(-1)
+        }
     },
 
     computed: {
@@ -69,6 +79,16 @@ export default {
 </script>
 
 <style scoped>
+
+.slide-enter-from,
+.slide-leave-to {
+  max-height: 0;
+  margin-bottom: 0;
+}
+
+
+
+
 #brand {
     width: 100px;
     height: 100px;

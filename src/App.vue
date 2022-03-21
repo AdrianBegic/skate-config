@@ -2,9 +2,16 @@
 <Nav :navLinks="navLinks" :navConfig="navConfig" />
 <div class="home">
     <div class="filler">
+    <img id="board" src="./assets/board.png">
     </div>
 </div>
-<router-view></router-view>
+<div class="footer">
+    <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+            <component :is="Component" />
+        </transition>
+</router-view>
+</div>
 </template>
 
 <script>
@@ -13,7 +20,7 @@ import Nav from './components/navBar.vue'
 export default {
     name: "Home",
     components: {
-      Nav,
+        Nav,
     },
 
     setup() {
@@ -21,7 +28,7 @@ export default {
         const navConfig = ({
             navBg: "#000",
             linkFont: "Sans-serif",
-            });
+        });
         return {
             navConfig
         };
@@ -62,5 +69,28 @@ body {
     background-size: cover;
     height: 100vh;
     width: 100vw;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.footer {
+    width: 100%;
+    position: fixed;
+    background: #000;
+    bottom: 0;
+}
+
+#board {
+  display: block;
+  margin: 0 auto;
+  width: 40vw;
 }
 </style>
