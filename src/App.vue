@@ -2,7 +2,7 @@
 <Nav :navLinks="navLinks" :navConfig="navConfig" />
 <div class="home">
     <div class="filler">
-    <img id="board" src="./assets/board.png">
+    <skateboard_render id="board" :currentBoard="currentBoard" @update-event="changeBoard" > </skateboard_render>
     </div>
 </div>
 <div class="footer">
@@ -16,11 +16,19 @@
 
 <script>
 import Nav from './components/navBar.vue'
+import skateboard_render from './components/skateboard_render.vue'
 
 export default {
     name: "Home",
     components: {
         Nav,
+        skateboard_render,
+    },
+
+    data() {
+        return {
+            currentBoard: 'Baker Black',
+        }
     },
 
     setup() {
@@ -33,6 +41,10 @@ export default {
             navConfig
         };
     },
+
+    changeBoard(newVal) { 
+    this.changeBoard = newVal;
+},
 
 };
 </script>

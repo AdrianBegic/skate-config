@@ -1,4 +1,5 @@
 <template>
+
 <div class="footer">
     <div class="card-carousel-wrapper">
         <div class="card-carousel">
@@ -14,7 +15,7 @@
                         <img id="brand" :src="boards.Image" :title="boards.Name" />
                     </div>
 
-                    <div class="card-carousel--card" v-for="boardsDecks in boardsDecks " :key="boardsDecks.id">
+                    <div class="card-carousel--card" v-for="boardsDecks in boardsDecks " :key="boardsDecks.id" >
                         <img id="brand" :src="boardsDecks.Image" :title="boardsDecks.Name" />
                     </div>
                  
@@ -43,6 +44,7 @@ export default {
             paginationFactor: 170,
             boards: [],
             boardsDecks:{},
+            currentBoard: 'Baker Black',
         };
     },
 
@@ -73,6 +75,9 @@ export default {
                 });
             });
         });
+
+      
+       
     },
 
     
