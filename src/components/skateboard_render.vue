@@ -1,6 +1,6 @@
 <template>
 <div class="container" v-for="boardsDecks in boardsDecks" :key="boardsDecks.id">
-    <img :src="boardsDecks.Image">
+    <img :src="this.$store.state.currentBoard">
 </div>
 </template>
 
@@ -15,16 +15,17 @@ export default {
     data() {
         return {
             boardsDecks: [],
+            test: this.$store.state.currentBoard
         };
     },
-    
+
     computed: mapState({
-  currentBoard: state => state.currentBoard
+  currentBoard: state => state.currentBoard,
 })            ,
     created() {
         db.
         collection("boardsDecks")
-            .where("name", "==", this.$store.state.currentBoard)
+            .where("image", "==", this.$store.state.currentBoard)
             .onSnapshot((snapshotChange) => {
                 this.boardsDecks = [];
                 snapshotChange.forEach((doc) => {

@@ -27,7 +27,7 @@
                 id="brand"
                 :src="boardsDecks.Image"
                 :title="boardsDecks.Name"
-                :bind= "boardsDecks.Name"
+                :bind= "boardsDecks.Image"
               />
             </div>
           </div>
@@ -61,16 +61,9 @@ methods: {
     shout (event) {
             this.boardSelect = event.target.getAttribute('bind');         
                console.log(this.boardSelect);      
-            this.$store.commit('changeBoard', this.boardSelect);
-            this.$forceUpdate()
+            this.$store.dispatch('changeBoard', this.boardSelect);
         },
 
-     
-
-
-      
-
-    
   },
   created() {
     db.collection("boards")
