@@ -1,6 +1,6 @@
 <template>
 <div class="container" v-for="boardsDecks in boardsDecks" :key="boardsDecks.id">
-    <img :src="this.$store.state.currentBoard">
+    <img id="board" :src="this.$store.state.currentBoard">
 </div>
 </template>
 
@@ -15,7 +15,6 @@ export default {
     data() {
         return {
             boardsDecks: [],
-            test: this.$store.state.currentBoard
         };
     },
 
@@ -44,7 +43,12 @@ export default {
 
 <style scoped>
 .container {
-    height: auto;
-    width: auto;
+    height: 100vw;
+    width: 100vw;
+}
+
+#board{
+    width: 60vw;
+    padding-top: 200px;
 }
 </style>

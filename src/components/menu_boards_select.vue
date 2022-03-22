@@ -25,7 +25,7 @@
             >
               <img
                 id="brand"
-                :src="boardsDecks.Image"
+                :src="boardsDecks.Thumb"
                 :title="boardsDecks.Name"
                 :bind= "boardsDecks.Image"
               />
@@ -89,6 +89,7 @@ methods: {
             key: doc.id,
             Image: doc.data().image,
             Name: doc.data().name,
+            Thumb: doc.data().thumb,
             ID: doc.data().ID,
           });
         });
