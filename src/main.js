@@ -1,6 +1,28 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
+import { createStore } from "vuex" 
 
 
-createApp(App).use(router).mount("#app");
+
+const store = createStore({
+	state: {
+        currentBoard: "default",
+	},
+      mutations: {
+        UPDATE_BOARD(state, currentBoard) {
+          state.currentBoard = (currentBoard);
+        },
+      },
+      actions: {
+        changeBoard({ commit }, currentBoard) {
+          commit('UPDATE_BOARD', currentBoard);
+        },
+      },
+});
+
+const app = createApp(App);
+app.use(store)
+app.use(router)
+app.mount("#app");
+ 

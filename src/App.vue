@@ -2,7 +2,7 @@
 <Nav :navLinks="navLinks" :navConfig="navConfig" />
 <div class="home">
     <div class="filler">
-    <skateboard_render id="board" :currentBoard="currentBoard" @update-event="changeBoard" > </skateboard_render>
+    <skateboard_render id="board"> </skateboard_render>
     </div>
 </div>
 <div class="footer">
@@ -42,9 +42,7 @@ export default {
         };
     },
 
-    changeBoard(newVal) { 
-    this.changeBoard = newVal;
-},
+   
 
 };
 </script>

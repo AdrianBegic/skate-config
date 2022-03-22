@@ -1,6 +1,7 @@
 <template>
 <div class="container" v-for="boardsDecks in boardsDecks" :key="boardsDecks.id">
-    <img :src="boardsDecks.Image" >
+    <img :src="boardsDecks.Image">
+>
 </div>
 </template>
 
@@ -8,28 +9,27 @@
 import {
     db
 } from "../firebaseDb";
+import { mapGetters} from "vuex";
 
 export default {
     name: "skateboard_render",
-    props:{
-        currentBoard: {
-            type: String,
-            default: 'Default'
-        }
-    },
     data() {
         return {
             boardsDecks: [],
-          
+            currentBoard : this.$store.state.currentBoard,
         };
     },
-
+computed: {
+          ...mapGetters(["boardValue"]),
+      boards() {
+        return this.$store.state.currentBoard;
+      },
+    },
     created() {
 
         db.
             collection("boardsDecks")
-            
-            .where("name", "==", this.currentBoard)
+            .where("ID", "==", this.currentBoard)
             .onSnapshot((snapshotChange) => {
                 this.boardsDecks = [];
                 snapshotChange.forEach((doc) => {
@@ -41,6 +41,8 @@ export default {
                 });
             });
     },
+    
+
 
 };
 </script>
