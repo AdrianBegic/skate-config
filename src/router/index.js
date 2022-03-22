@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Boards from "../components/menu_board_brands.vue";
 import Brand_boards from "../components/menu_boards_select.vue";
+import skateboard_render from '../components/skateboard_render.vue';
 
 const routes = [
   {
@@ -19,6 +20,12 @@ const routes = [
     name: "BoardBrand",
     component: Brand_boards,
   },
+  {
+    path: "/:id",
+    name: "Select",
+    component: skateboard_render,
+  },
+  
   
 ];
 

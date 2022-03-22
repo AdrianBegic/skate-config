@@ -21,13 +21,13 @@
               class="card-carousel--card"
               v-for="boardsDecks in boardsDecks"
               :key="boardsDecks.id"
-              @click="update()" 
+              @click="shout" 
             >
               <img
                 id="brand"
                 :src="boardsDecks.Image"
                 :title="boardsDecks.Name"
-                test= "boardsDecks.Name"
+                :bind= "boardsDecks.Name"
               />
             </div>
           </div>
@@ -59,13 +59,17 @@ export default {
   
 methods: {
     shout (event) {
-            this.testOne = event.target.getAttribute('test');
-            console.log(this.testOne);
+            this.boardSelect = event.target.getAttribute('bind');         
+               console.log(this.boardSelect);      
+            this.$store.commit('changeBoard', this.boardSelect);
+            this.$forceUpdate()
         },
 
-      update() {
-          this.$store.dispatch('changeBoard', this.$route.params.id)
-      },
+     
+
+
+      
+
     
   },
   created() {

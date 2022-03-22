@@ -7,7 +7,7 @@ import { createStore } from "vuex"
 
 const store = createStore({
 	state: {
-        currentBoard: "default",
+        currentBoard: "Default",
 	},
       mutations: {
         UPDATE_BOARD(state, currentBoard) {
