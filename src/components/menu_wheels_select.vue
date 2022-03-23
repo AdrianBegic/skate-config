@@ -14,7 +14,7 @@
             </div>
 
             <div class="card-carousel--card2">
-              <img id="brand" :src="boards.Image" :title="boards.Name" />
+              <img id="brand" :src="wheels.Image" :title="wheels.Name" />
             </div>
 
             <div
@@ -43,7 +43,7 @@ import back_button_menu from "../components/back_button_menu.vue";
 
 
 export default {
-  name: "menu_boards_select",
+  name: "menu_wheels_select",
   components: {
     back_button_menu,
   },
@@ -52,7 +52,7 @@ export default {
       currentOffset: 0,
       windowSize: 12,
       paginationFactor: 170,
-      boards: [],
+      wheels: [],
       boardsDecks: {},
     };
   },
@@ -66,12 +66,12 @@ methods: {
 
   },
   created() {
-    db.collection("boards")
+    db.collection("wheels")
       .where("ID", "==", this.$route.params.id)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          this.boards = {
+          this.wheels = {
             key: doc.id,
             Image: doc.data().image,
             Name: doc.data().name,

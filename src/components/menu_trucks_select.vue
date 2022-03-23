@@ -14,20 +14,20 @@
             </div>
 
             <div class="card-carousel--card2">
-              <img id="brand" :src="boards.Image" :title="boards.Name" />
+              <img id="brand" :src="trucks.Image" :title="trucks.Name" />
             </div>
 
             <div
               class="card-carousel--card"
-              v-for="boardsDecks in boardsDecks"
-              :key="boardsDecks.id"
+              v-for="trucksParts in trucksParts"
+              :key="trucksParts.id"
               @click="shout" 
             >
               <img
                 id="brand"
-                :src="boardsDecks.Thumb"
-                :title="boardsDecks.Name"
-                :bind= "boardsDecks.Image"
+                :src="trucksParts.Thumb"
+                :title="trucksParts.Name"
+                :bind= "trucksParts.Image"
               />
             </div>
           </div>
@@ -52,26 +52,26 @@ export default {
       currentOffset: 0,
       windowSize: 12,
       paginationFactor: 170,
-      boards: [],
-      boardsDecks: {},
+      trucks: [],
+      trucksParts: {},
     };
   },
   
 methods: {
     shout (event) {
-            this.boardSelect = event.target.getAttribute('bind');         
-               console.log(this.boardSelect);      
-            this.$store.dispatch('changeBoard', this.boardSelect);
+            this.truckSelect = event.target.getAttribute('bind');         
+               console.log(this.truckSelect);      
+            this.$store.dispatch('changeTruck', this.truckSelect);
         },
 
   },
   created() {
-    db.collection("boards")
+    db.collection("trucks")
       .where("ID", "==", this.$route.params.id)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          this.boards = {
+          this.trucks = {
             key: doc.id,
             Image: doc.data().image,
             Name: doc.data().name,
@@ -80,12 +80,12 @@ methods: {
         });
       });
 
-    db.collection("boardsDecks")
+    db.collection("trucksParts")
       .where("ID", "==", this.$route.params.id)
       .onSnapshot((snapshotChange) => {
-        this.boardsDecks = [];
+        this.trucksParts = [];
         snapshotChange.forEach((doc) => {
-          this.boardsDecks.push({
+          this.trucksParts.push({
             key: doc.id,
             Image: doc.data().image,
             Name: doc.data().name,

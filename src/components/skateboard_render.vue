@@ -1,6 +1,10 @@
 <template>
 <div class="container" v-for="boardsDecks in boardsDecks" :key="boardsDecks.id">
+<div id="board-cont">
     <img id="board" :src="this.$store.state.currentBoard">
+    <img id="truck-one" :src="this.$store.state.currentTruck">
+    <img id="truck-two" :src="this.$store.state.currentTruck">
+</div>
 </div>
 </template>
 
@@ -15,11 +19,13 @@ export default {
     data() {
         return {
             boardsDecks: [],
+            trucksParts:[],
         };
     },
 
     computed: mapState({
   currentBoard: state => state.currentBoard,
+  currentTruck: state => state.currentTruck,
 })            ,
     created() {
         db.
@@ -35,7 +41,19 @@ export default {
                     });
                 });
             });
-            
+             db.
+        collection("trucksParts")
+            .where("image", "==", this.$store.state.currentTruck)
+            .onSnapshot((snapshotChange) => {
+                this.trucksParts = [];
+                snapshotChange.forEach((doc) => {
+                    this.trucksParts.push({
+                        key: doc.id,
+                        Image: doc.data().image,
+                        ID: doc.data().ID,
+                    });
+                });
+            });
     },
 
 };
@@ -43,12 +61,37 @@ export default {
 
 <style scoped>
 .container {
-    height: 100vw;
+    height: auto;
     width: 100vw;
 }
 
+
 #board{
-    width: 60vw;
-    padding-top: 200px;
+    width: 40vw;
+      position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#truck-one{
+    width: 20vw;
+      position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%) rotateY(180deg);
+}
+#truck-two{
+    width: 20vw;
+      position: absolute;
+  top: 40%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+#wheel-one{
+    width:20vw;
+position: absolute;
+  top: 40%;
+  left: 60%;
+  transform: translate(-50%, -50%);
 }
 </style>

@@ -6,9 +6,19 @@
                 <div class="card-carousel-cards" :style="{
               transform: 'translateX' + '(' + currentOffset + 'px' + ')',
             }">
-                    <div class="card-carousel--card" v-for="parts in parts" :key="parts.id">
-                        <router-link to="/boards">
-                            <img id="brand" :src="parts.Image" :title="parts.Name" />
+                    <div class="card-carousel--card" v-for="board in board" :key="board.id">
+                        <router-link :to="{name: 'Boards' , params : {id : board.ID}}">
+                            <img id="brand" :src="board.Image" :title="board.Name" />
+                        </router-link>
+                    </div>
+                    <div class="card-carousel--card" v-for="truck in truck" :key="truck.id">
+                        <router-link :to="{name: 'Trucks' , params : {id : board.ID}}">
+                            <img id="brand" :src="truck.Image" :title="truck.Name" />
+                        </router-link>
+                    </div>
+                    <div class="card-carousel--card" v-for="wheel in wheel" :key="wheel.id">
+                        <router-link :to="{name: 'Wheels' , params : {id : wheel.ID}}">
+                            <img id="brand" :src="wheel.Image" :title="wheel.Name" />
                         </router-link>
                     </div>
                 </div>
@@ -24,21 +34,47 @@ import {
 } from "../firebaseDb";
 
 export default {
-    name: "menu_parts_select",
+    name: "menu_board_select",
     data() {
         return {
             currentOffset: 0,
             windowSize: 12,
             paginationFactor: 170,
-            parts: [],
+            board: [],
+            truck: [],
+            wheel: [],
         };
     },
 
     created() {
-        db.collection("parts").onSnapshot((snapshotChange) => {
-            this.parts = [];
+        db.collection("board").onSnapshot((snapshotChange) => {
+            this.board = [];
             snapshotChange.forEach((doc) => {
-                this.parts.push({
+                this.board.push({
+                    key: doc.id,
+                    Image: doc.data().image,
+                    Name: doc.data().name,
+                    ID: doc.data().ID,
+                });
+            });
+        });
+
+        db.collection("truck").onSnapshot((snapshotChange) => {
+            this.truck = [];
+            snapshotChange.forEach((doc) => {
+                this.truck.push({
+                    key: doc.id,
+                    Image: doc.data().image,
+                    Name: doc.data().name,
+                    ID: doc.data().ID,
+                });
+            });
+        });
+
+         db.collection("wheel").onSnapshot((snapshotChange) => {
+            this.wheel = [];
+            snapshotChange.forEach((doc) => {
+                this.wheel.push({
                     key: doc.id,
                     Image: doc.data().image,
                     Name: doc.data().name,
@@ -52,7 +88,7 @@ export default {
         atEndOfList() {
             return (
                 this.currentOffset <=
-                this.paginationFactor * -1 * (this.partss.length - this.windowSize)
+                this.paginationFactor * -1 * (this.boards.length - this.windowSize)
             );
         },
         atHeadOfList() {
@@ -68,8 +104,8 @@ a {
 }
 
 #brand {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     padding: 10px;
 }
 
@@ -82,7 +118,7 @@ a {
 
 .card-carousel-wrapper {
     display: flex;
-    align-parts: center;
+    align-board: center;
     justify-content: center;
     margin: 20px 0 20px;
     color: #666a73;
