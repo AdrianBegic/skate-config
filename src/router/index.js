@@ -6,7 +6,8 @@ import Trucks from '../components/menu_trucks_brands.vue';
 import Brand_trucks from '../components/menu_trucks_select.vue';
 import Wheels from '../components/menu_wheels_brands.vue';
 import Brand_wheels from '../components/menu_wheels_select.vue';
-
+import Comments from '../views/Comments.vue';
+import Build from '../views/Build.vue';
 
 const routes = [
   {
@@ -48,6 +49,16 @@ const routes = [
     path: "/wheels/:id",
     name: "WheelBrand",
     component: Brand_wheels,
+  },
+  {
+    path: "/suggestions",
+    name: "Suggestions",
+    component: Comments,
+  },
+  {
+    path: "/yourBuild",
+    name: "YourBuild",
+    component: Build,
   },
   
   

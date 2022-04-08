@@ -10,6 +10,9 @@
     </div>
     <nav class="header__nav-wrap" :class="{ open: burgerVisibility }">
         <ul class="header__nav-list" @click="burgerVisibility = false">
+        <li class="header__nav-item"><router-link class="header__nav-link" to="/">HOME</router-link></li>
+        <li class="header__nav-item"><router-link class="header__nav-link" to="/suggestions">SUGGESTIONS</router-link></li>
+        <li class="header__nav-item"><router-link class="header__nav-link" to="/yourBuild">YOUR BUILD</router-link></li>
             <li class="header__nav-item">
                 <router-link class="header__nav-link" v-for="(navName, index) in navLinks" :key="index" :to="navName.path">{{ navName.name }}</router-link>
             </li>
@@ -252,13 +255,13 @@ export default {
 
 @media only screen and (max-width: 959px) {
     .header__nav-link::after {
-        background-color: v-bind("navConfig.linkColorHover");
+        background-color: #fff;
     }
 }
 
 @media only screen and (min-width: 960px) {
     .header__nav-link::after {
-        background-color: v-bind("navConfig.linkColorHover");
+        background-color: #fff;
     }
 }
 
