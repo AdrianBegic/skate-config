@@ -19,15 +19,15 @@
 
             <div
               class="card-carousel--card"
-              v-for="boardsDecks in boardsDecks"
-              :key="boardsDecks.id"
+              v-for="wheelsParts in wheelsParts"
+              :key="wheelsParts.id"
               @click="shout" 
             >
               <img
                 id="brand"
-                :src="boardsDecks.Thumb"
-                :title="boardsDecks.Name"
-                :bind= "boardsDecks.Image"
+                :src="wheelsParts.Thumb"
+                :title="wheelsParts.Name"
+                :bind= "wheelsParts.Image"
               />
             </div>
           </div>
@@ -53,15 +53,15 @@ export default {
       windowSize: 12,
       paginationFactor: 170,
       wheels: [],
-      boardsDecks: {},
+      wheelsParts: {},
     };
   },
   
 methods: {
     shout (event) {
-            this.boardSelect = event.target.getAttribute('bind');         
-               console.log(this.boardSelect);      
-            this.$store.dispatch('changeBoard', this.boardSelect);
+            this.wheelSelect = event.target.getAttribute('bind');         
+               console.log(this.wheelSelect);      
+            this.$store.dispatch('changeWheel', this.wheelSelect);
         },
 
   },
@@ -80,12 +80,12 @@ methods: {
         });
       });
 
-    db.collection("boardsDecks")
+    db.collection("wheelsParts")
       .where("ID", "==", this.$route.params.id)
       .onSnapshot((snapshotChange) => {
-        this.boardsDecks = [];
+        this.wheelsParts = [];
         snapshotChange.forEach((doc) => {
-          this.boardsDecks.push({
+          this.wheelsParts.push({
             key: doc.id,
             Image: doc.data().image,
             Name: doc.data().name,

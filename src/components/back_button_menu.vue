@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style scoped>
-#brand {
+#brand-1 {
   width: 200px;
   height: 200px;
   padding: 10px;

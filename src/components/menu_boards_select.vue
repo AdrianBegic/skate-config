@@ -10,11 +10,11 @@
             }"
           >
             <div class="card-carousel--card">
-              <back_button_menu />
+              <back_button_menu id="brand-1" />
             </div>
 
             <div class="card-carousel--card2">
-              <img id="brand" :src="boards.Image" :title="boards.Name" />
+              <img id="brand-1" :src="boards.Image" :title="boards.Name" />
             </div>
 
             <div
@@ -106,6 +106,12 @@ a {
 }
 
 #brand {
+  width: 300px;
+  height: 100px;
+  padding: 10px;
+}
+
+#brand-1 {
   width: 100px;
   height: 100px;
   padding: 10px;

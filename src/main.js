@@ -8,8 +8,8 @@ import { createStore } from "vuex"
 const store = createStore({
 	state: {
         currentBoard: "https://i.ibb.co/cvLMgdY/default-board.webp",
-        currentTruck: "https://i.ibb.co/FzJJjdp/default-truck.webp",
-        currentWheel: "https://i.ibb.co/nsmYHVH/default-wheels.webp",
+        currentTruck: "https://i.ibb.co/6bsjfVG/default.webp",
+        currentWheel: "https://i.ibb.co/thw9SDC/default-wheels.webp",
 	},
       mutations: {
         UPDATE_BOARD(state, currentBoard) {

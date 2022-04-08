@@ -4,6 +4,8 @@
     <img id="board" :src="this.$store.state.currentBoard">
     <img id="truck-one" :src="this.$store.state.currentTruck">
     <img id="truck-two" :src="this.$store.state.currentTruck">
+    <img id="wheel-one" :src="this.$store.state.currentWheel">
+    <img id="wheel-two" :src="this.$store.state.currentWheel">
 </div>
 </div>
 </template>
@@ -74,24 +76,31 @@ export default {
   transform: translate(-50%, -50%);
 }
 #truck-one{
-    width: 20vw;
+    width: 11vw;
       position: absolute;
   top: 40%;
   left: 40%;
   transform: translate(-50%, -50%) rotateY(180deg);
 }
 #truck-two{
-    width: 20vw;
+    width: 11vw;
       position: absolute;
   top: 40%;
   left: 60%;
   transform: translate(-50%, -50%);
 }
 #wheel-one{
-    width:20vw;
+    width:40vw;
 position: absolute;
-  top: 40%;
-  left: 60%;
+  top: 39.8%;
+  left: 49.2%;
+  transform: translate(-50%, -50%);
+}
+#wheel-two{
+    width:40vw;
+position: absolute;
+  top: 39.8%;
+  left: 70.4%;
   transform: translate(-50%, -50%);
 }
 </style>
